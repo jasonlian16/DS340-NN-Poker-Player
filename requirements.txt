@@ -1,0 +1,5 @@
+rlcard
+torch
+matplotlib
+pyyaml
+numpy

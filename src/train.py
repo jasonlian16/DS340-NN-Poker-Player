@@ -2,7 +2,7 @@
 Training loop: DQN agent (player 0) vs. RandomAgent (player 1).
 See README for a full explanation of the training process.
 
-Usage:
+Run --> 
     python src/train.py
     python src/train.py --episodes 20000 --gamma 0.95 --epsilon_decay linear
 """

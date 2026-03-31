@@ -1,6 +1,5 @@
 """
 DQN Agent for Leduc Hold'em.
-See README for a full explanation of how these pieces fit together.
 """
 
 import random

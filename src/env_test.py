@@ -1,8 +1,3 @@
-"""
-Week 1 smoke test: verify the RLCard Leduc Hold'em environment runs correctly
-and print out what the observation/action space looks like.
-"""
-
 import rlcard
 from rlcard.agents import RandomAgent
 
@@ -14,7 +9,7 @@ print(f"Number of actions : {env.num_actions}")
 print(f"State shape       : {env.state_shape}")
 print(f"Action shape      : {env.action_shape}")
 
-# Play one random hand and inspect  observation
+# Play one random hand and inspect observation
 random_agents = [RandomAgent(num_actions=env.num_actions) for _ in range(env.num_players)]
 env.set_agents(random_agents)
 

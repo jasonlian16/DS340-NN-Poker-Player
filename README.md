@@ -19,7 +19,7 @@ python3 src/train.py --run_name baseline
 # Evaluate a saved model
 python3 src/evaluate.py --model results/models/baseline.pth
 
-# Run an experiment sweep (epsilon, architecture, or gamma)
+# Run an experiment sweep (epsilon, architecture, or gamma) 
 python3 experiments/run_experiments.py --experiment epsilon
 ```
 
@@ -57,7 +57,7 @@ The reward is 0 at every step during a hand except the last, where it equals the
 
 ---
 
-## Experiments
+## Experiments (unfinished)
 
 Three hyperparameters are tested per the project proposal:
 

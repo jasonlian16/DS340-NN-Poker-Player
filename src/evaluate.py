@@ -1,8 +1,6 @@
 """
 Evaluate a saved DQN agent against a random agent.
-
-Usage:
-    python src/evaluate.py --model results/models/default.pth --episodes 1000
+Run --> python src/evaluate.py --model results/models/default.pth --episodes 1000
 """
 
 import argparse

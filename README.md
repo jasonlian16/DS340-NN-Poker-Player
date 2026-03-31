@@ -19,7 +19,7 @@ python3 src/train.py --run_name baseline
 # Evaluate a saved model
 python3 src/evaluate.py --model results/models/baseline.pth
 
-# Run an experiment sweep (epsilon, architecture, or gamma) 
+# Run an experiment sweep (epsilon, architecture, or gamma)    ## I HAVENT DONE THIS YET
 python3 experiments/run_experiments.py --experiment epsilon
 ```
 

@@ -41,9 +41,9 @@ RLCard gives the agent a 36-dimensional vector encoding its private card, the co
 
 The agent uses a Deep Q-Network to decide what action to take. The idea is to train a neural network that, given the current game state, outputs a "Q-value" for each possible action (fold, call, raise). A Q-value is an estimate of how many chips the agent expects to win if it takes that action. At each decision point, the agent just picks the action with the highest Q-value.
 
-Training works like this: the agent plays a hand, and at the end it finds out how many chips it won or lost. It then goes back and updates its Q-value estimates using the Bellman equation — basically, "the value of a state-action pair should equal the immediate reward plus the discounted value of the best next state." Over thousands of hands, the Q-values get more accurate.
+Training works like this: the agent plays a hand, and at the end it finds out how many chips it won or lost. It then goes back and updates its Q-value estimates using the Bellman equation. Over thousands of hands, the Q-values get more accurate.
 
-Three tricks make this stable:
+3 methods make this stable:
 
 **Experience replay** — instead of learning from each hand immediately in sequence, the agent stores past hands in a buffer and samples random batches to learn from. This prevents the network from overfitting to whatever just happened.
 

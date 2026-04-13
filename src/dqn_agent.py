@@ -105,8 +105,7 @@ class DQNAgent:
         obs = state["obs"]
         legal_actions = list(state["legal_actions"].keys())
         
-        # We call select_action. Since epsilon is 0.0 during evaluation, 
-        # this will automatically be a greedy move.
+        # We call select_action. Since epsilon is 0.0 during evaluation, this will automatically be a greedy move.
         action = self.select_action(obs, legal_actions)
         
         return action, {}

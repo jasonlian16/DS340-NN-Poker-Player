@@ -131,7 +131,7 @@ def main():
     plot_path = f"results/plots/{args.run_name}_learning_curve.png"
     plt.savefig(plot_path, dpi=150)
     print(f"Plot saved to {plot_path}")
-    plt.show()
+    #plt.show()
 
 
 if __name__ == "__main__":

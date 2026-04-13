@@ -96,6 +96,21 @@ class DQNAgent:
         obs = state["obs"]
         legal_actions = list(state["legal_actions"].keys())
         return self.select_action(obs, legal_actions)
+    
+    def eval_step(self, state: dict) -> tuple[int, dict]:
+        """
+        RLCard interface for evaluation. 
+        Returns the best action and an empty info dict.
+        """
+        obs = state["obs"]
+        legal_actions = list(state["legal_actions"].keys())
+        
+        # We call select_action. Since epsilon is 0.0 during evaluation, 
+        # this will automatically be a greedy move.
+        action = self.select_action(obs, legal_actions)
+        
+        return action, {}
+
 
     def select_action(self, state: np.ndarray, legal_actions: list[int]) -> int:
         """Epsilon-greedy: random action with prob epsilon, else best legal Q-value."""

@@ -74,7 +74,11 @@ class DQNAgent:
         self.epsilon_end = epsilon_end
         self.epsilon_decay = epsilon_decay
         self.epsilon_decay_steps = epsilon_decay_steps
-        self.epsilon_exp_rate = (epsilon_end / epsilon_start) ** (1.0 / epsilon_decay_steps)
+        # Added check for epsilon start being greater than 0 to avoid dividing by 0 error
+        if epsilon_start > 0:
+            self.epsilon_exp_rate = (epsilon_end / epsilon_start) ** (1.0 / epsilon_decay_steps)
+        else:
+            self.epsilon_exp_rate = 0.0
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.q_net      = QNetwork(state_dim, num_actions, hidden_layers).to(self.device)

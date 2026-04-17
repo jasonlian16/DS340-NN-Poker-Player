@@ -20,10 +20,20 @@ def main():
         "large": ["--hidden_layers", "256", "128", "64"]
     }
 
+    epsilon_configs = [
+        {"name": "eps_linear", "args": ["--epsilon_decay", "linear"]},
+        {"name": "eps_exponential", "args": ["--epsilon_decay", "exponential"]},
+        {"name": "eps_constant", "args": ["--epsilon_decay", "constant"]}
+    ]
+
     # Conditional Execution
     if args.experiment in ["arch", "all"]:
         for name, lyrs in arch_configs.items():
             run_experiment(f"arch_{name}", lyrs)
+    
+    if args.experiment in ["epsilon", "all"]:
+        for config in epsilon_configs:
+            run_experiment(f"exp_{config['name']}", config['args'])
 
 
 if __name__ == "__main__":

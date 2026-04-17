@@ -80,7 +80,13 @@ class DQNAgent:
         else:
             self.epsilon_exp_rate = 0.0
 
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if torch.backends.mps.is_available():
+            self.device = torch.device("mps")
+        elif torch.cuda.is_available():
+            self.device = torch.device("cuda")
+        else:
+            self.device = torch.device("cpu")   
+                 
         self.q_net      = QNetwork(state_dim, num_actions, hidden_layers).to(self.device)
         self.target_net = QNetwork(state_dim, num_actions, hidden_layers).to(self.device)
         self.target_net.load_state_dict(self.q_net.state_dict())

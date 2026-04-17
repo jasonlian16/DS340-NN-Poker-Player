@@ -2,7 +2,7 @@ import subprocess
 import argparse
 
 def run_experiment(run_name, extra_args):
-    cmd = ["python3", "src/train.py", "--run_name", run_name, "--episodes", "100"] # update to 10000 episodes later
+    cmd = ["python3", "src/train.py", "--run_name", run_name, "--episodes", "10000"] # update to 10000 episodes later
     cmd.extend(extra_args)
     print(f"\n STARTING: {run_name}")
     subprocess.run(cmd, check=True)

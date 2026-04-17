@@ -13,20 +13,31 @@ def main():
     parser.add_argument("--experiment", type=str, choices=["arch", "gamma", "epsilon", "all"], default="all")
     args = parser.parse_args()
 
-    # Define the Configurations
+    # Testing NN architecture
     arch_configs = {
         "small": ["--hidden_layers", "64"],
         "medium": ["--hidden_layers", "128", "128"],
         "large": ["--hidden_layers", "256", "128", "64"]
     }
 
+    # Testing epsilon (linear, constant, exponential)
     epsilon_configs = [
         {"name": "eps_linear", "args": ["--epsilon_decay", "linear"]},
         {"name": "eps_exponential", "args": ["--epsilon_decay", "exponential"]},
         {"name": "eps_constant", "args": ["--epsilon_decay", "constant"]}
     ]
 
+    # Testing Discount Factor (Gamma) 
+    gamma_configs = ["0.8", "0.95", "0.99"]
+
+
     # Conditional Execution
+    if args.experiment in ["gamma", "all"]:
+        for g in gamma_configs:
+            # We keep the architecture 'medium' to ensure a fair test
+            run_id = f"gamma_{g}"
+            run_experiment(run_id, ["--gamma", g, "--hidden_layers", "128", "128"]) 
+
     if args.experiment in ["arch", "all"]:
         for name, lyrs in arch_configs.items():
             run_experiment(f"arch_{name}", lyrs)

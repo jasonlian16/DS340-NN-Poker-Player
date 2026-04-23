@@ -59,7 +59,7 @@ class DQNAgent:
         gamma: float = 0.99,
         epsilon_start: float = 1.0,
         epsilon_end: float = 0.01,
-        epsilon_decay: str = "exponential",   # "exponential" | "linear" | "constant"
+        epsilon_decay: str = "exponential",   
         epsilon_decay_steps: int = 10_000,
         buffer_capacity: int = 10_000,
         batch_size: int = 64,
@@ -110,8 +110,6 @@ class DQNAgent:
         """
         obs = state["obs"]
         legal_actions = list(state["legal_actions"].keys())
-        
-        # We call select_action. Since epsilon is 0.0 during evaluation, this will automatically be a greedy move.
         action = self.select_action(obs, legal_actions)
         
         return action, {}

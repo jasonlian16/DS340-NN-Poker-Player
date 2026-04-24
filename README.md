@@ -16,11 +16,37 @@ python3 src/env_test.py   # verify the environment works
 # Train with default settings
 python3 src/train.py --run_name baseline
 
-# Evaluate a saved model
+# Evaluate a saved model (default architecture: 128 128)
 python3 src/evaluate.py --model results/models/baseline.pth
 
-# Run an experiment sweep (epsilon, architecture, or gamma)    ## I HAVENT DONE THIS YET
+# Evaluate with a specific architecture (must match what the model was trained with)
+python3 src/evaluate.py --model results/models/baseline.pth --hidden_layers 128 128 --episodes 5000
+
+# Run an experiment sweep (epsilon, architecture, or gamma)
 python3 experiments/run_experiments.py --experiment epsilon
+```
+
+### Evaluating experiment models
+
+The `--hidden_layers` flag must match the architecture used during training. Use the values below:
+
+**Gamma ablations** (all trained with `128 128`):
+```bash
+python src/evaluate.py --model results/models/gamma_0.95.pth --hidden_layers 128 128 --episodes 5000
+python src/evaluate.py --model results/models/gamma_0.99.pth --hidden_layers 128 128 --episodes 5000
+python src/evaluate.py --model results/models/gamma_0.8.pth  --hidden_layers 128 128 --episodes 5000
+```
+
+**Architecture ablations**:
+```bash
+python src/evaluate.py --model results/models/arch_small.pth  --hidden_layers 64         --episodes 5000
+python src/evaluate.py --model results/models/arch_medium.pth --hidden_layers 128 128    --episodes 5000
+python src/evaluate.py --model results/models/arch_large.pth  --hidden_layers 256 128 64 --episodes 5000
+```
+
+To find the hidden layer sizes for any saved model, check its training log:
+```bash
+python -c "import json; d=json.load(open('results/logs/<run_name>.json')); print(d['args']['hidden_layers'])"
 ```
 
 Results (logs, plots, model weights) are saved to `results/`.
@@ -67,9 +93,9 @@ Three hyperparameters are tested per the project proposal:
 - Constant (ε=0.1): no decay, always 10% random
 
 **Network architecture** — how many hidden layers the Q-network has.
-- Small: 1 hidden layer (64 units)
-- Medium: 2 hidden layers (64, 64)
-- Large: 3 hidden layers (128, 128, 64)
+- Small: 1 hidden layer (64)
+- Medium: 2 hidden layers (128, 128)
+- Large: 3 hidden layers (256, 128, 64)
 
 **Discount factor (gamma)** — how much the agent values future rewards vs. immediate ones.
 - γ=0.80: short-sighted, cares mostly about the current hand

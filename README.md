@@ -85,7 +85,7 @@ The reward is 0 at every step during a hand except the last, where it equals the
 
 ## Experiments
 
-Three hyperparameters are tested per the project proposal:
+Four hyperparameters are tested:
 
 **Epsilon decay schedule** — how quickly the agent shifts from random to learned behavior.
 - Exponential: decays fast early, slows down later
@@ -101,6 +101,10 @@ Three hyperparameters are tested per the project proposal:
 - γ=0.80: short-sighted, cares mostly about the current hand
 - γ=0.95: moderate
 - γ=0.99: long-term, weighs future hands heavily
+
+**Target network update frequency** — how often the frozen target network syncs with the main network.
+- Every 200 steps (baseline)
+- Every 100 steps (more frequent, tested in `target_100`)
 
 ---
 

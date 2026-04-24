@@ -16,11 +16,11 @@ python3 src/env_test.py   # verify the environment works
 # Train with default settings
 python3 src/train.py --run_name baseline
 
-# Evaluate a saved model (default architecture: 128 128)
+# Evaluate a saved model (default architecture: 64 64)
 python3 src/evaluate.py --model results/models/baseline.pth
 
 # Evaluate with a specific architecture (must match what the model was trained with)
-python3 src/evaluate.py --model results/models/baseline.pth --hidden_layers 128 128 --episodes 5000
+python3 src/evaluate.py --model results/models/baseline.pth --hidden_layers 64 64 --episodes 5000
 
 # Run an experiment sweep (epsilon, architecture, or gamma)
 python3 experiments/run_experiments.py --experiment epsilon
@@ -83,14 +83,14 @@ The reward is 0 at every step during a hand except the last, where it equals the
 
 ---
 
-## Experiments (unfinished)
+## Experiments
 
 Three hyperparameters are tested per the project proposal:
 
 **Epsilon decay schedule** — how quickly the agent shifts from random to learned behavior.
 - Exponential: decays fast early, slows down later
 - Linear: steady decay at a fixed rate
-- Constant (ε=0.1): no decay, always 10% random
+- Constant (ε=1.0): no decay, always fully random
 
 **Network architecture** — how many hidden layers the Q-network has.
 - Small: 1 hidden layer (64)

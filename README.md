@@ -79,7 +79,7 @@ Training works like this: the agent plays a hand, and at the end it finds out ho
 
 ### Reward signal
 
-The reward is 0 at every step during a hand except the last, where it equals the chip gain or loss. This is realistic for poker — you don't know if you've won until the hand is over.
+The reward is 0 at every step during a hand except the last, where it equals the chip gain or loss. 
 
 ---
 
